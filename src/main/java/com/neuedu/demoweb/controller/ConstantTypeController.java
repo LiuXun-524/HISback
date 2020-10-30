@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.neuedu.demoweb.domain.entity.ConstantItem;
 import com.neuedu.demoweb.domain.entity.ConstantType;
 import com.neuedu.demoweb.domain.entity.RespMsg;
 import com.neuedu.demoweb.service.IConstantTypeSer;
@@ -35,6 +36,11 @@ public class ConstantTypeController {
 	@RequestMapping("/findAll")
 	public List<ConstantType> findAll(){
 		List<ConstantType> ctList = ser.findAll();
+		return ctList;
+	}
+	@RequestMapping("/findAllDeptCate")
+	public List<ConstantItem> findAllDeptCate(String constantTypeName){
+		List<ConstantItem> ctList = ser.findAllDeptCate(constantTypeName);
 		return ctList;
 	}
 	@RequestMapping("/findAllConstantTypePage")

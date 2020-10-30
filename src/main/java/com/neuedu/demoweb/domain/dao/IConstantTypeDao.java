@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.neuedu.demoweb.domain.entity.ConstantItem;
 import com.neuedu.demoweb.domain.entity.ConstantType;
 
 public interface IConstantTypeDao {
@@ -21,4 +22,9 @@ public interface IConstantTypeDao {
 	
 	@Update("UPDATE t_constanttype SET constantTypeCode=#{constantTypeCode},constantTypeName=#{constantTypeName} where id=#{id}")
 	public int update(ConstantType ct);
+	@Select("SELECT a.* "+
+" from t_consantitem a, t_constanttype b "+
+" WHERE a.constantTypeID=b.id "+
+" AND b.constantTypeName='科室分类'")
+	public List<ConstantItem> findAllDeptCate(String constantTypeName);
 }

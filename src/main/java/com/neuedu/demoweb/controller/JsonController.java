@@ -1,17 +1,9 @@
 package com.neuedu.demoweb.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neuedu.demoweb.domain.entity.User;
 import com.neuedu.demoweb.service.IUserService;
 /**
  * 实体类

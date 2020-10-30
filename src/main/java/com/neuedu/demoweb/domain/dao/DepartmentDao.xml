@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.demoweb.domain.dao.DepartmentDao">
+	<select id="selectallByParam" parameterType="com.neuedu.demoweb.domain.entity.Department" resultType="java.util.List">
+		select c.deptCode,c.deptName,a.constantName,c.deptType 
+		from t_consantitem a,t_constanttype b,t_department c
+		<where>
+		a.constantTypeID=b.id and c.deptCategoryID = a.id
+		<!-- 如果用户输入了deptType --> 
+		<if test="deptType!=null and deptType!=''">
+		and c.deptType=#{deptType}
+		</if>
+		<!-- 如果用户输入了deptCategoryID -->
+		<if test="deptCategoryID!=null and deptCategoryID!=''">
+		and c.deptCategoryID=#{deptCategoryID}
+		</if>
+		</where>
+		
+	</select>
+</mapper>

@@ -1,6 +1,7 @@
 package com.neuedu.demoweb.domain.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -23,8 +24,10 @@ public interface IConstantItemDao {
 	public int add(ConstantItem ci)throws Exception;
 
 
-@Select("select * from t_consantitem")
-public List<ConstantItem> findAll();
+@Select("SELECT a.constantCode,a.constantName,b.constantTypeName"
+		+ " FROM t_consantitem a,t_constanttype b"
+		+ " WHERE a.constantTypeID = b.id")
+public List<Map<String,Object>> findAll();
 
 
 @Update({

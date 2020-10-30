@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.neuedu.demoweb.domain.dao.IConstantTypeDao;
+import com.neuedu.demoweb.domain.entity.ConstantItem;
 import com.neuedu.demoweb.domain.entity.ConstantType;
 import com.neuedu.demoweb.domain.entity.RespMsg;
 import com.neuedu.demoweb.service.IConstantTypeSer;
@@ -43,6 +44,11 @@ public class ConstantTypeSer implements IConstantTypeSer {
 	@Override
 	public List<ConstantType> findAll() {
 		List<ConstantType> ctList  = dao.findAll();
+		return ctList;
+	}
+	@Override
+	public List<ConstantItem> findAllDeptCate(String constantTypeName) {
+		List<ConstantItem> ctList  = dao.findAllDeptCate(constantTypeName);
 		return ctList;
 	}
 	@SuppressWarnings("rawtypes")

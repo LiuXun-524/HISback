@@ -1,6 +1,9 @@
 package com.neuedu.demoweb.service.impl;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +17,85 @@ public class DepartmentSerImpl implements IDepartmentSer {
 	@Autowired
 	DepartmentDao dao;
 	@Override
-	public List<Department> selectall() {
+	public List<Map<String,Object>> selectall() {
 		// TODO Auto-generated method stub
-		return dao.selectall();
+		Map<Integer, String> deptType = new HashMap<>();
+		deptType.put(1, "临床");
+		deptType.put(2, "医技");
+		deptType.put(3, "财务");
+		deptType.put(4, "行政");
+		deptType.put(5, "其它");
+		List<Map<String,Object>> list = dao.selectall();
+		for (Iterator<Map<String, Object>> iterator = list.iterator(); iterator.hasNext();) {
+			Map<String, Object> map = (Map<String, Object>) iterator.next();
+			for (int i = 0; i < deptType.size(); i++) {
+				if(map.get("deptType").equals(i)){
+					map.put("deptType",deptType.get(i));
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<Map<String, Object>> selectallByParam(Department dept) {
+		//*******动态拼接查询语句***************
+		Map<Integer, String> deptType = new HashMap<>();
+		deptType.put(1, "临床");
+		deptType.put(2, "医技");
+		deptType.put(3, "财务");
+		deptType.put(4, "行政");
+		deptType.put(5, "其它");
+		List<Map<String,Object>> list = dao.selectallByParam(dept);
+		for (Iterator<Map<String, Object>> iterator = list.iterator(); iterator.hasNext();) {
+			Map<String, Object> map = (Map<String, Object>) iterator.next();
+			for (int i = 0; i < deptType.size(); i++) {
+				if(map.get("deptType").equals(i)){
+					map.put("deptType",deptType.get(i));
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<Department> selectAllDept() {
+		// TODO Auto-generated method stub
+		return dao.selectAllDept();
+	}
+	@Override
+	public List<Map<String, Object>> selectDeptByDeptType(int typeId) {
+		Map<Integer, String> deptType = new HashMap<>();
+		deptType.put(1, "临床");
+		deptType.put(2, "医技");
+		deptType.put(3, "财务");
+		deptType.put(4, "行政");
+		deptType.put(5, "其它");
+		List<Map<String,Object>> list = dao.selectallByDeptType(typeId);
+		for (Iterator<Map<String, Object>> iterator = list.iterator(); iterator.hasNext();) {
+			Map<String, Object> map = (Map<String, Object>) iterator.next();
+				if(map.get("deptType").equals(typeId)){
+					map.put("deptType",deptType.get(typeId));
+				}
+		}
+		return list;
+	}
+	@Override
+	public List<Map<String, Object>> selectDeptByDcid(int deptCategoryID) {
+		Map<Integer, String> deptType = new HashMap<>();
+		deptType.put(1, "临床");
+		deptType.put(2, "医技");
+		deptType.put(3, "财务");
+		deptType.put(4, "行政");
+		deptType.put(5, "其它");
+		List<Map<String,Object>> list = dao.selectallByDcid(deptCategoryID);
+		for (Iterator<Map<String, Object>> iterator = list.iterator(); iterator.hasNext();) {
+			Map<String, Object> map = (Map<String, Object>) iterator.next();
+			for (int i = 0; i < deptType.size(); i++) {
+				if(map.get("deptType").equals(i)){
+					map.put("deptType",deptType.get(i));
+				}
+			}
+		}
+		return list;
 	}
 
 }

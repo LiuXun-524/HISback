@@ -1,6 +1,7 @@
 package com.neuedu.demoweb.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.neuedu.demoweb.domain.entity.ConstantItem;
 import com.neuedu.demoweb.domain.entity.RespMsg;
@@ -11,7 +12,7 @@ public interface IConstantItemService {
 
 	RespMsg<?> add(ConstantItem ci);
 
-	List<ConstantItem> findAll();
+	List<Map<String, Object>> findAll();
 
 	RespMsg<?> delAll(String idsstr);
 

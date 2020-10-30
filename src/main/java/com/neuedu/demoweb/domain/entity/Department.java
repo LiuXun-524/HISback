@@ -7,6 +7,12 @@ public class Department {
 	private int deptCategoryID;
 	private int deptType;
 	private int delMark=1;
+	
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", deptCode=" + deptCode + ", deptName=" + deptName + ", deptCategoryID="
+				+ deptCategoryID + ", deptType=" + deptType + ", delMark=" + delMark + "]";
+	}
 	public int getId() {
 		return id;
 	}

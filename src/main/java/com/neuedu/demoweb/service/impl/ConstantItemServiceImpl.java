@@ -1,6 +1,7 @@
 package com.neuedu.demoweb.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,8 @@ public class ConstantItemServiceImpl implements IConstantItemService{
 	}
 
 	@Override
-	public List<ConstantItem> findAll() {
-		List<ConstantItem> list = dao.findAll();
+	public List<Map<String, Object>> findAll() {
+		List<Map<String, Object>> list = dao.findAll();
 		return list;
 	}
 

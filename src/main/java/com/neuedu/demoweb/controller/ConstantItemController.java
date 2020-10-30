@@ -1,6 +1,7 @@
 package com.neuedu.demoweb.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,10 +42,10 @@ public class ConstantItemController {
 	}
 	
 	@RequestMapping("/findAllConstantItemPage")
-	public PageInfo<ConstantItem> findAllConstantItemPage(int currentPage,int pageSize){
+	public PageInfo<Map<String, Object>> findAllConstantItemPage(int currentPage,int pageSize){
 		PageHelper.startPage(currentPage,pageSize);
-		List<ConstantItem> list=ser.findAll();
-		PageInfo<ConstantItem> pageInfo = new PageInfo<>(list);
+		List<Map<String, Object>> list=ser.findAll();
+		PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(list);
 
 		return pageInfo;
 	}
