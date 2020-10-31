@@ -31,5 +31,5 @@ public interface DepartmentDao {
 			" and c.deptCategoryID=#{deptCategoryID}")
 	public List<Map<String, Object>> selectallByDcid(int deptCategoryID);
 	
-	public List<Map<String, Object>> selectallByParam(Department dept);
+	public List<Map<String, Object>> selectallByParam(Department dept)throws Exception;
 }

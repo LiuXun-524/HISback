@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neuedu.demoweb.domain.entity.Department;
+import com.neuedu.demoweb.domain.entity.RespMsg;
 import com.neuedu.demoweb.service.IDepartmentSer;
 
 @RestController
@@ -21,6 +23,12 @@ public class DepartmentController {
 
 	@Autowired
 	IDepartmentSer ser;
+	
+	@RequestMapping("/add")
+	public RespMsg<?> add(){
+		
+		return ser.selectAllDept();
+	}
 	@RequestMapping("/selectall")
 	public List<Department> selectall(){
 		return ser.selectAllDept();
@@ -32,18 +40,25 @@ public class DepartmentController {
 		PageInfo<Map<String,Object>> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}
-	@PostMapping("/selectallByParam")
+	@GetMapping("/selectallByParam")
 	public PageInfo<Map<String,Object>> selectallByParam(
 			@RequestParam(value = "currentPage",required=true) Integer currentPage,
 			@RequestParam(value = "pageSize",required=true)Integer pageSize,
 			@RequestParam(value = "deptCategoryID",required=false) Integer deptCategoryID,
 			@RequestParam(value = "deptType",required=false) Integer deptType
 			){
-//		System.out.println(dept.toString());
+		System.out.println(currentPage+","+pageSize+","+deptCategoryID+","+deptType);
 		PageHelper.startPage(currentPage,pageSize);
-		Department dept = new Department();
-		dept.setDeptCategoryID(deptCategoryID);
-		dept.setDeptType(deptType);
+		Department dept = null;
+		if(deptCategoryID!=null||deptType!=null){
+			dept = new Department();
+			if(deptCategoryID!=null){
+				dept.setDeptCategoryID(deptCategoryID);
+			}
+			if(deptType!=null){
+				dept.setDeptType(deptType);
+			}
+		}
 		List<Map<String,Object>> list=ser.selectallByParam(dept);
 		PageInfo<Map<String,Object>> pageInfo = new PageInfo<>(list);
 		return pageInfo;

@@ -45,7 +45,12 @@ public class DepartmentSerImpl implements IDepartmentSer {
 		deptType.put(3, "财务");
 		deptType.put(4, "行政");
 		deptType.put(5, "其它");
-		List<Map<String,Object>> list = dao.selectallByParam(dept);
+		List<Map<String, Object>> list = null;
+		try {
+			list = dao.selectallByParam(dept);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		for (Iterator<Map<String, Object>> iterator = list.iterator(); iterator.hasNext();) {
 			Map<String, Object> map = (Map<String, Object>) iterator.next();
 			for (int i = 0; i < deptType.size(); i++) {

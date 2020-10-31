@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.neuedu.demoweb.domain.dao.DepartmentDao">
-	<select id="selectallByParam" parameterType="com.neuedu.demoweb.domain.entity.Department" resultType="java.util.List">
+	<select id="selectallByParam" parameterType="com.neuedu.demoweb.domain.entity.Department" resultType="java.util.Map">
 		select c.deptCode,c.deptName,a.constantName,c.deptType 
 		from t_consantitem a,t_constanttype b,t_department c
 		<where>
