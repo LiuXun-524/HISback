@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +24,14 @@ public class DepartmentController {
 	IDepartmentSer ser;
 	
 	@RequestMapping("/add")
-	public RespMsg<?> add(){
-		
-		return ser.selectAllDept();
+	public RespMsg<?> add(@RequestBody Department dept){
+		RespMsg<?> rm = ser.add(dept);
+		return rm;
+	}
+	@RequestMapping("/upDept")
+	public RespMsg<?> upDept(@RequestBody Department dept){
+		RespMsg<?> rm = ser.upDept(dept);
+		return rm;
 	}
 	@RequestMapping("/selectall")
 	public List<Department> selectall(){

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.neuedu.demoweb.domain.dao.DepartmentDao;
 import com.neuedu.demoweb.domain.entity.Department;
+import com.neuedu.demoweb.domain.entity.RespMsg;
 import com.neuedu.demoweb.service.IDepartmentSer;
 @Service
 public class DepartmentSerImpl implements IDepartmentSer {
@@ -101,6 +102,39 @@ public class DepartmentSerImpl implements IDepartmentSer {
 			}
 		}
 		return list;
+	}
+	@Override
+	public RespMsg<?> add(Department dept) {
+		RespMsg<?> rm = null;
+		try {
+			int re = dao.add(dept);
+			if(re>0){
+				rm = new RespMsg<>(1, "添加成功");
+			}else{
+				rm = new RespMsg<>(-2, "添加失败");
+			}
+		} catch (Exception e) {
+			rm = new RespMsg<>(-1, "科室名称重复！");
+			System.out.println("科室名称重复,已规定不能重复");
+		}
+		return rm;
+	}
+	@Override
+	public RespMsg<?> upDept(Department dept) {
+		RespMsg<?> rm = null;
+		try {
+			int re = dao.upDept(dept);
+			System.out.println("修改状态码"+re);
+			if(re>0){
+				rm = new RespMsg<>(1, "修改成功");
+			}else{
+				rm = new RespMsg<>(-2, "修改失败");
+			}
+		} catch (Exception e) {
+			rm = new RespMsg<>(-1, "数据库错误！");
+			System.out.println("数据库错误！");
+		}
+		return rm;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.neuedu.demoweb.domain.entity.Department;
+import com.neuedu.demoweb.domain.entity.RespMsg;
 
 public interface IDepartmentSer {
 
@@ -16,5 +17,9 @@ public interface IDepartmentSer {
 	public List<Map<String, Object>> selectDeptByDcid(int deptCategoryID);
 
 	public List<Map<String, Object>> selectallByParam(Department dept);
+
+	public RespMsg<?> add(Department dept);
+
+	public RespMsg<?> upDept(Department dept);
 
 }
