@@ -1,5 +1,7 @@
 package com.neuedu.demoweb.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,12 @@ public class UserController {
 	@Autowired
 	IUserService ser;
 	
+	@RequestMapping("/selectall")
+	public List<User> selectall(){
+		List<User> list = ser.selectall();
+		return list;
+		
+	}
 	@RequestMapping("/add")
 	public RespMsg<?> save(@RequestBody User user){
 		System.out.println(user.toString());

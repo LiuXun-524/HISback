@@ -54,5 +54,11 @@ public class UserService implements IUserService{
 		
 		return rm;
 	}
+
+	@Override
+	public List<User> selectall() {
+		List<User> list = dao.selectall();
+		return list;
+	}
 	
 }

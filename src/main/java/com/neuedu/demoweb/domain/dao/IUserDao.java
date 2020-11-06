@@ -1,5 +1,7 @@
 package com.neuedu.demoweb.domain.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -12,5 +14,7 @@ public interface IUserDao {
 	public int save(User user) throws Exception;
 @Select("select * from t_user where userName=#{userName}")
 	public User findUserByName(User user);
+@Select("select * from t_user")
+public List<User> selectall();
 
 }
