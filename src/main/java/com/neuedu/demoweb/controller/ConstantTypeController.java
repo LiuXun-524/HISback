@@ -43,6 +43,7 @@ public class ConstantTypeController {
 		List<ConstantItem> ctList = ser.findAllDeptCate(constantTypeName);
 		return ctList;
 	}
+	
 	@RequestMapping("/findAllConstantTypePage")
 	public PageInfo<ConstantType> findAllConstantTypePage(int currentPage,int pageSize){
 		PageHelper.startPage(currentPage,pageSize);

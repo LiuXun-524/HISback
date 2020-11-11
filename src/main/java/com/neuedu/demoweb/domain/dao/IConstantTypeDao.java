@@ -25,6 +25,6 @@ public interface IConstantTypeDao {
 	@Select("SELECT a.* "+
 " from t_consantitem a, t_constanttype b "+
 " WHERE a.constantTypeID=b.id "+
-" AND b.constantTypeName='科室分类'")
+" AND b.constantTypeName=#{constantTypeName}")
 	public List<ConstantItem> findAllDeptCate(String constantTypeName);
 }

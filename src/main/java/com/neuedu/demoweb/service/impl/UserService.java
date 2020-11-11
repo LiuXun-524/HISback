@@ -2,6 +2,7 @@ package com.neuedu.demoweb.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -60,5 +61,16 @@ public class UserService implements IUserService{
 		List<User> list = dao.selectall();
 		return list;
 	}
+
+	@Override
+	public List<Map<String,Object>> findAllUserByParams(int registLeID, String schedDate, String noon, int deptID) {
+		//2020-11-10 09:39:04
+//		String schedDateStr = schedDate.substring(0, 10);
+				
+		List<Map<String,Object>> list = dao.findAllUserByParams(registLeID,schedDate,noon,deptID);
+		return list;
+	}
+
+	
 	
 }
